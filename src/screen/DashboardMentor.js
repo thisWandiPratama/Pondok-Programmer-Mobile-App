@@ -14,18 +14,6 @@ class DashboardMentor extends React.Component {
   state = {
     boxIcon: [
       {
-        iconName: 'home',
-        size: 30,
-        color: 'rgb(0,184,150)',
-        title: 'Profile  Pondok',
-      },
-      {
-        iconName: 'slack',
-        size: 30,
-        color: 'rgb(0,184,150)',
-        title: 'Program Pondok',
-      },
-      {
         iconName: 'university',
         size: 30,
         color: 'rgb(0,184,150)',
@@ -35,7 +23,7 @@ class DashboardMentor extends React.Component {
         iconName: 'pencil',
         size: 30,
         color: 'rgb(0,184,150)',
-        title: 'Buat Kurikulum',
+        title: 'Buat Materi Pembelajaran',
       },
       {
         iconName: 'tags',

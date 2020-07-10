@@ -2,6 +2,7 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import DashboardUtama from '../screen/DashboardUtama';
+import DashboardMentor from '../screen/DashboardMentor';
 
 const Stack = createStackNavigator();
 
@@ -12,7 +13,8 @@ function NavigationScreen() {
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen name="Home" component={DashboardUtama} />
+        <Stack.Screen name="DashboardUtama" component={DashboardUtama} />
+        <Stack.Screen name="DashboardMentor" component={DashboardMentor} />
       </Stack.Navigator>
     </NavigationContainer>
   );

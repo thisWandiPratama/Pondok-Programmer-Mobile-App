@@ -33,7 +33,7 @@ class DashboardUtama extends React.Component {
         title: 'Masuk',
       },
       {
-        iconName: 'list',
+        iconName: 'pencil-square-o',
         size: 30,
         color: 'rgb(0,184,150)',
         title: 'Daftar',
@@ -41,9 +41,6 @@ class DashboardUtama extends React.Component {
     ],
   };
   componentDidMount() {
-    this.timeOutSplash();
-  }
-  componentWillUnmount() {
     this.timeOutSplash();
   }
   timeOutSplash = () => {
@@ -55,6 +52,16 @@ class DashboardUtama extends React.Component {
     const {splash} = this.state;
     if (splash) {
       return <SplashScreen />;
+    }
+  };
+
+  changeScreen = (index) => {
+    switch (index) {
+      case 2:
+        this.props.navigation.navigate('DashboardMentor');
+        break;
+      default:
+        alert('lainnya');
     }
   };
   render() {
@@ -69,7 +76,7 @@ class DashboardUtama extends React.Component {
               return (
                 <View key={key} style={styles.iconField}>
                   <TouchableOpacity
-                    onPress={() => alert(key)}
+                    onPress={() => this.changeScreen(key)}
                     delayPressIn={10}
                     activeOpacity={0.5}>
                     <View style={styles.boxIcon}>
