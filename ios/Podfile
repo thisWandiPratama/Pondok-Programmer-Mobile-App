@@ -10,6 +10,8 @@ target 'PondokProgrammer' do
 
   pod 'react-native-spinkit', :path => '../node_modules/react-native-spinkit'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'PondokProgrammerTests' do
     inherit! :complete
     # Pods for testing

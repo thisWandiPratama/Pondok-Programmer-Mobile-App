@@ -5,7 +5,7 @@ import Spinner from 'react-native-spinkit';
 const SplashScreen = () => {
   return (
     <View style={styles.splash}>
-      <Image source={require('../assets/logo.png')} />
+      <Image source={require('../assets/images/logo.png')} />
       <Spinner
         visible={true}
         type="Wave"

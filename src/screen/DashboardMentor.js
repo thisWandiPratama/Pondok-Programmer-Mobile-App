@@ -10,9 +10,8 @@ const images = [
   'https://refrez.com/wp-content/uploads/2019/01/pulsa-tri.png',
 ];
 
-class DashboardUtama extends React.Component {
+class DashboardMentor extends React.Component {
   state = {
-    splash: true,
     boxIcon: [
       {
         iconName: 'home',
@@ -27,45 +26,69 @@ class DashboardUtama extends React.Component {
         title: 'Program Pondok',
       },
       {
-        iconName: 'sign-in',
+        iconName: 'university',
         size: 30,
         color: 'rgb(0,184,150)',
-        title: 'Masuk',
+        title: 'Buat SOP',
       },
       {
-        iconName: 'list',
+        iconName: 'pencil',
         size: 30,
         color: 'rgb(0,184,150)',
-        title: 'Daftar',
+        title: 'Buat Kurikulum',
+      },
+      {
+        iconName: 'tags',
+        size: 30,
+        color: 'rgb(0,184,150)',
+        title: 'Buat Standar Kompetensi',
+      },
+      {
+        iconName: 'book',
+        size: 30,
+        color: 'rgb(0,184,150)',
+        title: 'Buat Tugas Harian',
+      },
+      {
+        iconName: 'delicious',
+        size: 30,
+        color: 'rgb(0,184,150)',
+        title: 'Buat Mini Project',
+      },
+      {
+        iconName: 'play',
+        size: 30,
+        color: 'rgb(0,184,150)',
+        title: 'Buat Video Check',
+      },
+      {
+        iconName: 'group',
+        size: 30,
+        color: 'rgb(0,184,150)',
+        title: 'Daftar Santri',
+      },
+      {
+        iconName: 'qrcode',
+        size: 30,
+        color: 'rgb(0,184,150)',
+        title: 'QR Scanner',
+      },
+      {
+        iconName: 'sign-out',
+        size: 30,
+        color: 'rgb(0,184,150)',
+        title: 'Keluar',
       },
     ],
-  };
-  componentDidMount() {
-    this.timeOutSplash();
-  }
-  componentWillUnmount() {
-    this.timeOutSplash();
-  }
-  timeOutSplash = () => {
-    setTimeout(() => {
-      this.setState({splash: false});
-    }, 4000);
-  };
-  splashScreen = () => {
-    const {splash} = this.state;
-    if (splash) {
-      return <SplashScreen />;
-    }
   };
   render() {
     return (
       <View style={styles.container}>
-        {this.splashScreen()}
         <View style={styles.dashboardTemplate}>
           <BackgroundCarausel images={images} />
-          <Text style={styles.dashboardTitle}>DASHBOARD</Text>
+          <Text style={styles.dashboardTitle}>DASHBOARD MENTOR</Text>
           <View style={styles.iconTemplates}>
-            {this.state.boxIcon.map((value, key) => {
+            {this.state.boxIcon.map((value, key, index) => {
               return (
                 <View key={key} style={styles.iconField}>
                   <TouchableOpacity
@@ -91,7 +114,7 @@ class DashboardUtama extends React.Component {
   }
 }
 
-export default DashboardUtama;
+export default DashboardMentor;
 
 const styles = StyleSheet.create({
   container: {
@@ -112,7 +135,7 @@ const styles = StyleSheet.create({
     width: 80,
     alignItems: 'center',
     marginBottom: 10,
-    //marginTop:10
+    marginTop: 10,
   },
   boxIcon: {
     height: 60,
