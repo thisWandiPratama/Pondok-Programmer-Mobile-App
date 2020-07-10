@@ -8,6 +8,8 @@ target 'PondokProgrammer' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'react-native-spinkit', :path => '../node_modules/react-native-spinkit'
+
   target 'PondokProgrammerTests' do
     inherit! :complete
     # Pods for testing
