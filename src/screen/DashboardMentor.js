@@ -88,7 +88,7 @@ class DashboardMentor extends React.Component {
           <BackgroundCarausel images={images} />
           <Text style={styles.dashboardTitle}>DASHBOARD MENTOR</Text>
           <View style={styles.iconTemplates}>
-            {this.state.boxIcon.map((value, key, index) => {
+            {this.state.boxIcon.map((value, key) => {
               return (
                 <View key={key} style={styles.iconField}>
                   <TouchableOpacity
