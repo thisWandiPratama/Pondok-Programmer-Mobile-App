@@ -1,14 +1,8 @@
 import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity,Image} from 'react-native';
 import SplashScreen from '../components/splashScreen';
 import BackgroundCarausel from '../components/BackgroundCarausel';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-const images = [
-  'https://pbs.twimg.com/media/DMaxb3BUEAEgzi7.jpg',
-  'https://paketaninternet.com/wp-content/uploads/2015/06/Promo-XL-Elevenia-Monday-Madness.jpg',
-  'https://refrez.com/wp-content/uploads/2019/01/pulsa-tri.png',
-];
 
 class DashboardMentor extends React.Component {
   state = {
@@ -69,18 +63,32 @@ class DashboardMentor extends React.Component {
       },
     ],
   };
+  changeScreen = (index) => {
+    switch (index) {
+      case 8:
+        this.props.navigation.navigate('DashboardUtama');
+        break;
+      default:
+        alert('lainnya');
+    }
+  };
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.dashboardTemplate}>
-          <BackgroundCarausel images={images} />
-          <Text style={styles.dashboardTitle}>DASHBOARD MENTOR</Text>
+          <Image
+            source={require('../assets/images/banner.png')}
+            style={styles.banner}
+          />
           <View style={styles.iconTemplates}>
+            <View style={styles.dashboardTitleBox}>
+              <Text style={styles.dashboardTitle}>DASHBOARD MENTOR</Text>
+            </View>
             {this.state.boxIcon.map((value, key) => {
               return (
                 <View key={key} style={styles.iconField}>
                   <TouchableOpacity
-                    onPress={() => alert()}
+                    onPress={() => this.changeScreen(key)}
                     delayPressIn={10}
                     activeOpacity={0.5}>
                     <View style={styles.boxIcon}>
@@ -107,6 +115,7 @@ export default DashboardMentor;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'rgb(237, 237, 235)',
   },
   dashboardTemplate: {
     flex: 1,
@@ -116,7 +125,8 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     backgroundColor: 'white',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    marginTop: 15,
   },
   iconField: {
     height: 80,
@@ -140,10 +150,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 12,
   },
+  dashboardTitleBox: {
+    width: '100%',
+  },
   dashboardTitle: {
     margin: 5,
     fontWeight: 'bold',
     color: 'grey',
     fontSize: 14,
+  },
+  banner: {
+    height: '30%',
+    width: '100%',
   },
 });
