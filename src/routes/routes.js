@@ -5,6 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DashboardUtama from '../screen/DashboardUtama';
 import DashboardMentor from '../screen/DashboardMentor';
+import DashboardSantri from '../screen/Santri/DashboardSantri';
 import ProfilePondok from '../screen/ProfilePondok';
 import ProgramPondok from '../screen/ProgramPondok';
 import ProgramPondokContent from '../screen/ProgramPondokContent';
@@ -23,6 +24,7 @@ function NavigationScreen() {
         }}>
         <Stack.Screen name="DashboardUtama" component={DashboardUtama} />
         <Stack.Screen name="DashboardMentor" component={DashboardMentor} />
+        <Stack.Screen name="DashboardSantri" component={DashboardSantri} />
         <Stack.Screen name="ProfilePondok" component={ProfilePondok} />
         <Stack.Screen name="ProgramPondok" component={ProgramPondok} />
         <Stack.Screen
