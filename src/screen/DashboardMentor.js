@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
-import SplashScreen from '../components/SplashScreen';
+import SplashScreen from '../components/splashScreen';
 import BackgroundCarausel from '../components/BackgroundCarausel';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -80,7 +80,7 @@ class DashboardMentor extends React.Component {
               return (
                 <View key={key} style={styles.iconField}>
                   <TouchableOpacity
-                    onPress={() => alert(key)}
+                    onPress={() => alert()}
                     delayPressIn={10}
                     activeOpacity={0.5}>
                     <View style={styles.boxIcon}>

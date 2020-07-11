@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
-import SplashScreen from '../components/SplashScreen';
+import SplashScreen from '../components/splashScreen';
 import BackgroundCarausel from '../components/BackgroundCarausel';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
