@@ -1,10 +1,3 @@
-//Image BackgroundCarausel Dashboard Santri
-export const images = [
-    'https://pbs.twimg.com/media/DMaxb3BUEAEgzi7.jpg',
-    'https://paketaninternet.com/wp-content/uploads/2015/06/Promo-XL-Elevenia-Monday-Madness.jpg',
-    'https://refrez.com/wp-content/uploads/2019/01/pulsa-tri.png',
-  ];
-
 //Icon untuk List Menu
 export const boxIcon = [
   {
@@ -91,5 +84,4 @@ export const boxIcon = [
     color: 'rgb(0,184,150)',
     title: 'Keluar',
   },
-  
-]
+];

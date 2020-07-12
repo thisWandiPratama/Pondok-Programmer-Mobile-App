@@ -1,7 +1,6 @@
 import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity,Image} from 'react-native';
-import SplashScreen from '../components/splashScreen';
-import BackgroundCarausel from '../components/BackgroundCarausel';
+import {View, StyleSheet, Text, TouchableOpacity, Image} from 'react-native';
+import SplashScreen from '../components/SplashScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 class DashboardMentor extends React.Component {

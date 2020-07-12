@@ -4,16 +4,21 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  banner: {
+    height: '30%',
+    width: '100%',
+  },
   dashboardTemplate: {
     flex: 1,
   },
   iconTemplates: {
-    flex:1,
+    flex: 1,
     padding: 10,
     flexWrap: 'wrap',
     flexDirection: 'row',
     backgroundColor: 'white',
     justifyContent: 'center',
+    marginTop: 15,
   },
   iconField: {
     height: 80,
@@ -21,7 +26,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
     marginTop: 10,
-    marginBottom : 10
+    marginBottom: 10,
   },
   boxIcon: {
     height: 60,
@@ -43,5 +48,8 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'grey',
     fontSize: 14,
+  },
+  dashboardTitleBox: {
+    width: '100%',
   },
 });
