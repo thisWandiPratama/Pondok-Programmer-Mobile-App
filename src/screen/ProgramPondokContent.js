@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import Navbar from '../components/Navbar';
+import BackButton from '../components/BackButton';
 
 class ProgramPondokContent extends React.Component {
   render() {
@@ -27,13 +27,7 @@ class ProgramPondokContent extends React.Component {
             <Text>{this.props.route.params.content}</Text>
           </View>
         </ScrollView>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={styles.backButton}
-          delayPressIn={10}
-          onPress={() => this.props.navigation.goBack()}>
-          <Icon name="arrow-left" size={35} color="white" />
-        </TouchableOpacity>
+        <BackButton params={() => this.props.navigation.goBack()} />
       </View>
     );
   }
@@ -41,19 +35,6 @@ class ProgramPondokContent extends React.Component {
 export default ProgramPondokContent;
 
 const styles = StyleSheet.create({
-  backButton: {
-    height: 60,
-    width: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 100,
-    backgroundColor: 'rgb(0, 184, 150)',
-    position: 'absolute',
-    zIndex: 1,
-    bottom: '8%',
-    right: '10%',
-    elevation: 2,
-  },
   container: {
     flex: 1,
   },

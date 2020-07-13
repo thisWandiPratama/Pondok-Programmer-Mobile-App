@@ -5,9 +5,11 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  ToastAndroid,
 } from 'react-native';
 import {Picker} from '@react-native-community/picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import BackButton from '../components/BackButton';
 
 class Register extends React.Component {
   state = {
@@ -85,12 +87,12 @@ class Register extends React.Component {
               }
             }}>
             <Picker.Item label="Pilih Divisi" value="0" />
-            <Picker.Item label="Backend" value="Backend" />
-            <Picker.Item label="Frontend" value="Frontend" />
-            <Picker.Item label="Mobile(Java)" value="Mobile(Java)" />
+            <Picker.Item label="Backend" value="backend" />
+            <Picker.Item label="Frontend" value="frontend" />
+            <Picker.Item label="Mobile(Java)" value="mobile-java" />
             <Picker.Item
               label="Mobile(React Native)"
-              value="Mobile(React Native)"
+              value="mobile-react-native"
             />
           </Picker>
         </View>
@@ -100,13 +102,7 @@ class Register extends React.Component {
           delayPressIn={10}>
           <Text style={styles.textButton}>Daftar Anggota</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={styles.backButton}
-          delayPressIn={10}
-          onPress={() => this.props.navigation.goBack()}>
-          <Icon name="arrow-left" size={35} color="white" />
-        </TouchableOpacity>
+        <BackButton params={() => this.props.navigation.goBack()} />
       </View>
     );
   }
@@ -154,19 +150,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: 'white',
-  },
-  backButton: {
-    height: 60,
-    width: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 100,
-    backgroundColor: 'rgb(0, 184, 150)',
-    position: 'absolute',
-    zIndex: 9,
-    bottom: '8%',
-    right: '10%',
-    elevation: 2,
   },
   picker: {
     height: 40,

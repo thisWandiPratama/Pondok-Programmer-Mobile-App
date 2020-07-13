@@ -8,6 +8,9 @@ import {
 } from 'react-native';
 import {Picker} from '@react-native-community/picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import BackButton from '../components/BackButton';
+
+const axios = require('axios').default;
 
 class Login extends React.Component {
   state = {
@@ -25,6 +28,19 @@ class Login extends React.Component {
         <Text onPress={() => this.setState({secureText: true})}>Kunci</Text>
       );
     }
+  };
+  login = () => {
+    axios
+      .post('https://api.pondokprogrammer.com/api/student_login', {
+        email: 'muhammadhafifalbusyro@gmail.com',
+        password: 'lukmanhakim1969',
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   render() {
     return (
@@ -49,18 +65,13 @@ class Login extends React.Component {
           {this.seePassword()}
         </View>
         <TouchableOpacity
+          onPress={this.login}
           style={styles.button}
           activeOpacity={0.5}
           delayPressIn={10}>
           <Text style={styles.textButton}>Masuk</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={styles.backButton}
-          delayPressIn={10}
-          onPress={() => this.props.navigation.goBack()}>
-          <Icon name="arrow-left" size={35} color="white" />
-        </TouchableOpacity>
+        <BackButton params={() => this.props.navigation.goBack()} />
       </View>
     );
   }
@@ -108,18 +119,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: 'white',
-  },
-  backButton: {
-    height: 60,
-    width: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 100,
-    backgroundColor: 'rgb(0, 184, 150)',
-    position: 'absolute',
-    zIndex: 9,
-    bottom: '8%',
-    right: '10%',
-    elevation: 2,
   },
 });

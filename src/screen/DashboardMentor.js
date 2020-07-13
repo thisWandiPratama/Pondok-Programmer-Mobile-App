@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity, Image} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Image,
+  ToastAndroid,
+} from 'react-native';
 import SplashScreen from '../components/SplashScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -15,7 +22,7 @@ class DashboardMentor extends React.Component {
       {
         iconName: 'pencil',
         size: 30,
-        color: 'rgb(0,184,150)',
+        color: 'red',
         title: 'Buat Materi Pembelajaran',
       },
       {
@@ -64,6 +71,35 @@ class DashboardMentor extends React.Component {
   };
   changeScreen = (index) => {
     switch (index) {
+      case 0:
+        this.props.navigation.navigate('BuatSOP');
+        break;
+      case 1:
+        // this.props.navigation.navigate('BuatMateriPembelajaran');
+        ToastAndroid.show(
+          'Dalam masa pengerjaan',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
+        break;
+      case 2:
+        this.props.navigation.navigate('BuatStandarKompetensi');
+        break;
+      case 3:
+        this.props.navigation.navigate('BuatTugasHarian');
+        break;
+      case 4:
+        this.props.navigation.navigate('BuatMiniProject');
+        break;
+      case 5:
+        this.props.navigation.navigate('BuatVideoCheck');
+        break;
+      case 6:
+        this.props.navigation.navigate('DaftarSantri');
+        break;
+      case 7:
+        this.props.navigation.navigate('QRScanner');
+        break;
       case 8:
         this.props.navigation.navigate('DashboardUtama');
         break;
@@ -90,7 +126,11 @@ class DashboardMentor extends React.Component {
                     onPress={() => this.changeScreen(key)}
                     delayPressIn={10}
                     activeOpacity={0.5}>
-                    <View style={styles.boxIcon}>
+                    <View
+                      style={{
+                        ...styles.boxIcon,
+                        borderColor: `${value.color}`,
+                      }}>
                       <Icon
                         name={value.iconName}
                         size={value.size}

@@ -11,6 +11,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {ListProgramPondok} from '../data/ListProgramPondok';
 import Navbar from '../components/Navbar';
+import BackButton from '../components/BackButton';
 
 class ProgramPondok extends React.Component {
   state = {
@@ -50,13 +51,7 @@ class ProgramPondok extends React.Component {
             );
           })}
         </ScrollView>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={styles.backButton}
-          delayPressIn={10}
-          onPress={() => this.props.navigation.goBack()}>
-          <Icon name="arrow-left" size={35} color="white" />
-        </TouchableOpacity>
+        <BackButton params={() => this.props.navigation.goBack()} />
       </View>
     );
   }
@@ -75,19 +70,6 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     elevation: 2,
     marginBottom: 10,
-  },
-  backButton: {
-    height: 60,
-    width: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 100,
-    backgroundColor: 'rgb(0, 184, 150)',
-    position: 'absolute',
-    zIndex: 1,
-    bottom: '8%',
-    right: '10%',
-    elevation: 2,
   },
   imageContent: {
     height: 150,

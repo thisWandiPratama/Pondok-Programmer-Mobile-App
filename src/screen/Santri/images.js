@@ -3,13 +3,13 @@ export const boxIcon = [
   {
     iconName: 'money',
     size: 30,
-    color: 'rgb(0,184,150)',
+    color: 'red',
     title: 'Dompet Saya',
   },
   {
     iconName: 'shopping-cart',
     size: 30,
-    color: 'rgb(0,184,150)',
+    color: 'red',
     title: 'Toko',
   },
   {
@@ -27,7 +27,7 @@ export const boxIcon = [
   {
     iconName: 'files-o',
     size: 30,
-    color: 'rgb(0,184,150)',
+    color: 'red',
     title: 'Kurikulum',
   },
   {

@@ -11,7 +11,15 @@ import ProgramPondok from '../screen/ProgramPondok';
 import ProgramPondokContent from '../screen/ProgramPondokContent';
 import Register from '../screen/Register';
 import Login from '../screen/Login';
-
+import BuatSOP from '../screen/BuatSOP';
+import BuatMateriPembelajaran from '../screen/BuatMateriPembelajaran';
+import BuatStandarKompetensi from '../screen/BuatStandarKompetensi';
+import BuatTugasHarian from '../screen/BuatTugasHarian';
+import BuatMiniProject from '../screen/BuatMiniProject';
+import BuatVideoCheck from '../screen/BuatVideoCheck';
+import DaftarSantri from '../screen/DaftarSantri';
+import QRScanner from '../screen/QRScanner';
+import BuatMateriPembelajaranCreate from '../screen/BuatMateriPembelajaranCreate';
 const Stack = createStackNavigator();
 
 function NavigationScreen() {
@@ -33,6 +41,24 @@ function NavigationScreen() {
         />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="BuatSOP" component={BuatSOP} />
+        <Stack.Screen
+          name="BuatMateriPembelajaran"
+          component={BuatMateriPembelajaran}
+        />
+        <Stack.Screen
+          name="BuatMateriPembelajaranCreate"
+          component={BuatMateriPembelajaranCreate}
+        />
+        <Stack.Screen
+          name="BuatStandarKompetensi"
+          component={BuatStandarKompetensi}
+        />
+        <Stack.Screen name="BuatTugasHarian" component={BuatTugasHarian} />
+        <Stack.Screen name="BuatMiniProject" component={BuatMiniProject} />
+        <Stack.Screen name="BuatVideoCheck" component={BuatVideoCheck} />
+        <Stack.Screen name="QRScanner" component={QRScanner} />
+        <Stack.Screen name="DaftarSantri" component={DaftarSantri} />
       </Stack.Navigator>
     </NavigationContainer>
   );

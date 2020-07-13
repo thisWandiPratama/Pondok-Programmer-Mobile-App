@@ -84,7 +84,11 @@ class DashboardMentor extends React.Component {
                       onPress={() => this.changeScreen(key)}
                       delayPressIn={10}
                       activeOpacity={0.5}>
-                      <View style={styles.boxIcon}>
+                      <View
+                        style={{
+                          ...styles.boxIcon,
+                          borderColor: `${value.color}`,
+                        }}>
                         <Icon
                           name={value.iconName}
                           size={value.size}
