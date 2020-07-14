@@ -20,9 +20,15 @@ class DashboardMentor extends React.Component {
         title: 'Buat SOP',
       },
       {
+        iconName: 'file',
+        size: 30,
+        color: 'rgb(0,184,150)',
+        title: 'Buat Kurikulum',
+      },
+      {
         iconName: 'pencil',
         size: 30,
-        color: 'red',
+        color: 'rgb(0,184,150)',
         title: 'Buat Materi Pembelajaran',
       },
       {
@@ -75,32 +81,30 @@ class DashboardMentor extends React.Component {
         this.props.navigation.navigate('BuatSOP');
         break;
       case 1:
-        // this.props.navigation.navigate('BuatMateriPembelajaran');
-        ToastAndroid.show(
-          'Dalam masa pengerjaan',
-          ToastAndroid.SHORT,
-          ToastAndroid.CENTER,
-        );
+        this.props.navigation.navigate('BuatKurikulum');
         break;
       case 2:
-        this.props.navigation.navigate('BuatStandarKompetensi');
+        this.props.navigation.navigate('BuatMateriPembelajaran');
         break;
       case 3:
-        this.props.navigation.navigate('BuatTugasHarian');
+        this.props.navigation.navigate('BuatStandarKompetensi');
         break;
       case 4:
-        this.props.navigation.navigate('BuatMiniProject');
+        this.props.navigation.navigate('BuatTugasHarian');
         break;
       case 5:
-        this.props.navigation.navigate('BuatVideoCheck');
+        this.props.navigation.navigate('BuatMiniProject');
         break;
       case 6:
-        this.props.navigation.navigate('DaftarSantri');
+        this.props.navigation.navigate('BuatVideoCheck');
         break;
       case 7:
-        this.props.navigation.navigate('QRScanner');
+        this.props.navigation.navigate('DaftarSantri');
         break;
       case 8:
+        this.props.navigation.navigate('QRScanner');
+        break;
+      case 9:
         this.props.navigation.navigate('DashboardUtama');
         break;
       default:
@@ -164,7 +168,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     backgroundColor: 'white',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     marginTop: 15,
   },
   iconField: {

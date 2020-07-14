@@ -10,6 +10,8 @@ import {
 import {Picker} from '@react-native-community/picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BackButton from '../components/BackButton';
+import Spinner from 'react-native-spinkit';
+const axios = require('axios');
 
 class Register extends React.Component {
   state = {
@@ -20,6 +22,7 @@ class Register extends React.Component {
     code: '',
     picker: '',
     secureText: true,
+    isLoading: false,
   };
   seePassword = () => {
     if (this.state.secureText) {
@@ -32,7 +35,96 @@ class Register extends React.Component {
       );
     }
   };
+  registrasi = (name, email, password, phone, code, division) => {
+    this.setState({isLoading: true});
+    if (
+      name != '' &&
+      email != '' &&
+      password != '' &&
+      phone != '' &&
+      code != '' &&
+      division != ''
+    ) {
+      axios
+        .post('https://api.pondokprogrammer.com/api/student_register', {
+          name: name,
+          email: email,
+          password: password,
+          password_confirmation: password,
+          phone: phone,
+          code: code,
+          division: division,
+        })
+        .then((response) => {
+          if (response.data.status == 'success') {
+            this.setState({isLoading: false});
+            console.log(response.data.status);
+            ToastAndroid.show(
+              'Pendaftaran berhasil',
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER,
+            );
+          } else if (response.data.email) {
+            this.setState({isLoading: false});
+            console.log(response.data.email[0]);
+            ToastAndroid.show(
+              response.data.email[0],
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER,
+            );
+          } else if (response.data.phone) {
+            this.setState({isLoading: false});
+            console.log(response.phone[0]);
+            ToastAndroid.show(
+              response.data.phone[0],
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER,
+            );
+          } else if (response.data.password) {
+            this.setState({isLoading: false});
+            console.log(response.data.password[0]);
+            ToastAndroid.show(
+              response.data.password[0],
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER,
+            );
+          } else if (response.data.code) {
+            this.setState({isLoading: false});
+            console.log(response.data.code[0]);
+            ToastAndroid.show(
+              response.data.code[0],
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER,
+            );
+          }
+        })
+        .catch((error) => {
+          this.setState({isLoading: false});
+          console.log(error);
+          ToastAndroid.show(
+            'Registrasi gagal',
+            ToastAndroid.SHORT,
+            ToastAndroid.CENTER,
+          );
+        });
+    } else {
+      this.setState({isLoading: false});
+      ToastAndroid.show(
+        'Data tidak boleh ada yang kosong',
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+      );
+    }
+  };
+  animationLoading = () => {
+    if (this.state.isLoading) {
+      return <Spinner visible={true} type="Wave" color="white" />;
+    } else {
+      return <Text style={styles.textButton}>Daftar Anggota</Text>;
+    }
+  };
   render() {
+    const {username, email, password, no_tlp, code, picker} = this.state;
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Registrasi</Text>
@@ -53,6 +145,7 @@ class Register extends React.Component {
         <TextInput
           style={styles.textInput}
           placeholder="No Telepon"
+          keyboardType="numeric"
           onChangeText={(text) => this.setState({no_tlp: text})}
           value={this.state.no_tlp}
           placeholderTextColor="grey"
@@ -87,20 +180,19 @@ class Register extends React.Component {
               }
             }}>
             <Picker.Item label="Pilih Divisi" value="0" />
-            <Picker.Item label="Backend" value="backend" />
-            <Picker.Item label="Frontend" value="frontend" />
-            <Picker.Item label="Mobile(Java)" value="mobile-java" />
-            <Picker.Item
-              label="Mobile(React Native)"
-              value="mobile-react-native"
-            />
+            <Picker.Item label="Backend" value="1" />
+            <Picker.Item label="Frontend" value="2" />
+            <Picker.Item label="Mobile" value="3" />
           </Picker>
         </View>
         <TouchableOpacity
+          onPress={() =>
+            this.registrasi(username, email, password, no_tlp, code, picker)
+          }
           style={styles.button}
           activeOpacity={0.5}
           delayPressIn={10}>
-          <Text style={styles.textButton}>Daftar Anggota</Text>
+          {this.animationLoading()}
         </TouchableOpacity>
         <BackButton params={() => this.props.navigation.goBack()} />
       </View>

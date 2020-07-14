@@ -20,6 +20,8 @@ import BuatVideoCheck from '../screen/BuatVideoCheck';
 import DaftarSantri from '../screen/DaftarSantri';
 import QRScanner from '../screen/QRScanner';
 import BuatMateriPembelajaranCreate from '../screen/BuatMateriPembelajaranCreate';
+import BuatKurikulum from '../screen/BuatKurikulum';
+
 const Stack = createStackNavigator();
 
 function NavigationScreen() {
@@ -46,6 +48,7 @@ function NavigationScreen() {
           name="BuatMateriPembelajaran"
           component={BuatMateriPembelajaran}
         />
+        <Stack.Screen name="BuatKurikulum" component={BuatKurikulum} />
         <Stack.Screen
           name="BuatMateriPembelajaranCreate"
           component={BuatMateriPembelajaranCreate}

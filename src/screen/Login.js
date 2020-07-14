@@ -5,18 +5,21 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  ToastAndroid,
 } from 'react-native';
 import {Picker} from '@react-native-community/picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BackButton from '../components/BackButton';
+import Spinner from 'react-native-spinkit';
 
-const axios = require('axios').default;
+const axios = require('axios');
 
 class Login extends React.Component {
   state = {
     email: '',
     password: '',
     secureText: true,
+    isLoading: false,
   };
   seePassword = () => {
     if (this.state.secureText) {
@@ -29,20 +32,92 @@ class Login extends React.Component {
       );
     }
   };
-  login = () => {
-    axios
-      .post('https://api.pondokprogrammer.com/api/student_login', {
-        email: 'muhammadhafifalbusyro@gmail.com',
-        password: 'lukmanhakim1969',
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+  login = (email, password) => {
+    this.setState({isLoading: true});
+    if (email != '' && password != '') {
+      axios
+        .post('https://api.pondokprogrammer.com/api/student_login', {
+          email: email,
+          password: password,
+        })
+        .then((response) => {
+          if (response.data.token) {
+            if (response.data.data.role == '1') {
+              this.setState({isLoading: false});
+              console.log(response.data.token);
+              ToastAndroid.show(
+                'Login berhasil',
+                ToastAndroid.SHORT,
+                ToastAndroid.CENTER,
+              );
+              this.props.navigation.navigate('DashboardMentor');
+            } else if (response.data.data.role == '2') {
+              this.setState({isLoading: false});
+              console.log(response.data.token);
+              ToastAndroid.show(
+                'Login berhasil',
+                ToastAndroid.SHORT,
+                ToastAndroid.CENTER,
+              );
+              this.props.navigation.navigate('DashboardSantri');
+            }
+          }
+          // else if (response.data.status) {
+          //   this.setState({isLoading: false});
+          //   console.log(response.data.status);
+          //   ToastAndroid.show(
+          //     response.data.status,
+          //     ToastAndroid.SHORT,
+          //     ToastAndroid.CENTER,
+          //   );
+          // } else if (response.data.errors.email) {
+          //   this.setState({isLoading: false});
+          //   console.log(response.data.errors.email[0]);
+          //   ToastAndroid.show(
+          //     response.data.errors.email[0],
+          //     ToastAndroid.SHORT,
+          //     ToastAndroid.CENTER,
+          //   );
+          // } else if (response.data.errors.password) {
+          //   this.setState({isLoading: false});
+          //   console.log(response.data.errors.password[0]);
+          //   ToastAndroid.show(
+          //     response.data.errors.password[0],
+          //     ToastAndroid.SHORT,
+          //     ToastAndroid.CENTER,
+          //   );
+          // }
+          // else {
+          //   console.log(response.data);
+          // }
+        })
+        .catch((error) => {
+          this.setState({isLoading: false});
+          console.log(error);
+          ToastAndroid.show(
+            'Login gagal',
+            ToastAndroid.SHORT,
+            ToastAndroid.CENTER,
+          );
+        });
+    } else {
+      this.setState({isLoading: false});
+      ToastAndroid.show(
+        'Data tidak boleh ada yang kosong',
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+      );
+    }
+  };
+  animationLoading = () => {
+    if (this.state.isLoading) {
+      return <Spinner visible={true} type="Wave" color="white" />;
+    } else {
+      return <Text style={styles.textButton}>Masuk</Text>;
+    }
   };
   render() {
+    const {email, password} = this.state;
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Masuk</Text>
@@ -65,11 +140,11 @@ class Login extends React.Component {
           {this.seePassword()}
         </View>
         <TouchableOpacity
-          onPress={this.login}
+          onPress={() => this.login(email, password)}
           style={styles.button}
           activeOpacity={0.5}
           delayPressIn={10}>
-          <Text style={styles.textButton}>Masuk</Text>
+          {this.animationLoading()}
         </TouchableOpacity>
         <BackButton params={() => this.props.navigation.goBack()} />
       </View>
