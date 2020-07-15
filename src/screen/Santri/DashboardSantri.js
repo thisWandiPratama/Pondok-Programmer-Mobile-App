@@ -14,50 +14,46 @@ class DashboardMentor extends React.Component {
   changeScreen =  (key) => {
     switch (key) {
       case 0:
-          alert(key)
-        // this.props.navigation.navigate('DashboardMentor')
+        this.props.navigation.navigate('DompetSaya')
         break;
       case 1:
-        alert (key);
+        this.props.navigation.navigate('Toko')
         break;
       case 2:
-        alert (key);
+        this.props.navigation.navigate('IDCard')
         break;
       case 3:
-        alert (key);
+        this.props.navigation.navigate('SOP')
         break;
         case 4:
-        alert (key);
+        this.props.navigation.navigate('Kurikulum')
         break;
         case 5:
-        alert (key);
+        this.props.navigation.navigate('MateriDasar')
         break;
         case 6:
-        alert (key);
+        this.props.navigation.navigate('TugasHarian')
         break;
         case 7:
-        alert (key);
+        this.props.navigation.navigate('MiniProject')
         break;
         case 8:
-        alert (key);
+        this.props.navigation.navigate('VideoCheck')
         break;
         case 9:
-        alert (key);
+        this.props.navigation.navigate('Portofolio')
         break;
         case 10:
-        alert (key);
+        this.props.navigation.navigate('CatatanPelanggaran')
         break;
         case 11:
-        alert (key);
+        this.props.navigation.navigate('Raport')
         break;
         case 12:
-        alert (key);
+        this.props.navigation.navigate('ImpianSaya')
         break;
         case 13:
-        alert (key);
-        break;
-        case 14:
-        alert (key);
+        alert('keluar')
         break;
       default:
         alert ('lainnya');

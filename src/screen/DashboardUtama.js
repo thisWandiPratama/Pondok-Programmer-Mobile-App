@@ -58,7 +58,7 @@ class DashboardUtama extends React.Component {
   changeScreen = (index) => {
     switch (index) {
       case 2:
-        this.props.navigation.navigate('DashboardMentor');
+        this.props.navigation.navigate('DashboardSantri');
         break;
       default:
         alert('lainnya');
