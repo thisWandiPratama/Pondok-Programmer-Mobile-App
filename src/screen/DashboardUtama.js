@@ -1,14 +1,14 @@
 import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Image,
+  Linking,
+} from 'react-native';
 import SplashScreen from '../components/splashScreen';
-import BackgroundCarausel from '../components/BackgroundCarausel';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-const images = [
-  'https://pbs.twimg.com/media/DMaxb3BUEAEgzi7.jpg',
-  'https://paketaninternet.com/wp-content/uploads/2015/06/Promo-XL-Elevenia-Monday-Madness.jpg',
-  'https://refrez.com/wp-content/uploads/2019/01/pulsa-tri.png',
-];
 
 class DashboardUtama extends React.Component {
   state = {
@@ -27,6 +27,12 @@ class DashboardUtama extends React.Component {
         title: 'Program Pondok',
       },
       {
+        iconName: 'phone',
+        size: 30,
+        color: 'rgb(0,184,150)',
+        title: 'Kontak',
+      },
+      {
         iconName: 'sign-in',
         size: 30,
         color: 'rgb(0,184,150)',
@@ -40,14 +46,23 @@ class DashboardUtama extends React.Component {
       },
     ],
   };
-  componentDidMount() {
-    this.timeOutSplash();
-  }
-  timeOutSplash = () => {
-    setTimeout(() => {
+  componentDidMount = () => {
+    // Remember the timer handle
+    this.timerHandle = setTimeout(() => {
       this.setState({splash: false});
+      this.timerHandle = 0;
     }, 4000);
   };
+
+  componentWillUnmount = () => {
+    // Is our timer running?
+    if (this.timerHandle) {
+      // Yes, clear it
+      clearTimeout(this.timerHandle);
+      this.timerHandle = 0;
+    }
+  };
+
   splashScreen = () => {
     const {splash} = this.state;
     if (splash) {
@@ -57,8 +72,20 @@ class DashboardUtama extends React.Component {
 
   changeScreen = (index) => {
     switch (index) {
+      case 0:
+        this.props.navigation.navigate('ProfilePondok');
+        break;
+      case 1:
+        this.props.navigation.navigate('ProgramPondok');
+        break;
       case 2:
-        this.props.navigation.navigate('DashboardSantri');
+        Linking.openURL('https://wa.me/qr/5JTJKHXEH2R3M1');
+        break;
+      case 3:
+        this.props.navigation.navigate('Login');
+        break;
+      case 4:
+        this.props.navigation.navigate('Register');
         break;
       default:
         alert('lainnya');
@@ -69,9 +96,14 @@ class DashboardUtama extends React.Component {
       <View style={styles.container}>
         {this.splashScreen()}
         <View style={styles.dashboardTemplate}>
-          <BackgroundCarausel images={images} />
-          <Text style={styles.dashboardTitle}>DASHBOARD</Text>
+          <Image
+            source={require('../assets/images/banner.png')}
+            style={styles.banner}
+          />
           <View style={styles.iconTemplates}>
+            <View style={styles.dashboardTitleBox}>
+              <Text style={styles.dashboardTitle}>DASHBOARD</Text>
+            </View>
             {this.state.boxIcon.map((value, key) => {
               return (
                 <View key={key} style={styles.iconField}>
@@ -103,6 +135,7 @@ export default DashboardUtama;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'rgb(237, 237, 235)',
   },
   dashboardTemplate: {
     flex: 1,
@@ -112,14 +145,16 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     backgroundColor: 'white',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginTop: 15,
   },
   iconField: {
     height: 80,
     width: 80,
     alignItems: 'center',
     marginBottom: 10,
-    //marginTop:10
+    marginTop: 10,
   },
   boxIcon: {
     height: 60,
@@ -136,10 +171,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 12,
   },
+  dashboardTitleBox: {
+    width: '100%',
+  },
   dashboardTitle: {
     margin: 5,
     fontWeight: 'bold',
     color: 'grey',
     fontSize: 14,
+  },
+  banner: {
+    height: '30%',
+    width: '100%',
   },
 });

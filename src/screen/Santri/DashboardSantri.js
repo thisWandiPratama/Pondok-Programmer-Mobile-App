@@ -1,9 +1,8 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import BackgroundCarausel from '../../components/BackgroundCarausel';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {ScrollView} from 'react-native-gesture-handler';
-import {images, boxIcon} from './images';
+import {boxIcon} from './images';
 import {styles} from './styles';
 
 class DashboardMentor extends React.Component {
@@ -11,7 +10,7 @@ class DashboardMentor extends React.Component {
     boxIcon: boxIcon,
   };
 
-  changeScreen =  (key) => {
+  changeScreen = (key) => {
     switch (key) {
       case 0:
         this.props.navigation.navigate('DompetSaya')
@@ -56,28 +55,36 @@ class DashboardMentor extends React.Component {
         alert('keluar')
         break;
       default:
-        alert ('lainnya');
+        alert('lainnya');
     }
-}
+  };
 
-  render () {
+  render() {
     const {boxIcon} = this.state;
     return (
       <View style={styles.container}>
         <View style={styles.dashboardTemplate}>
-          <BackgroundCarausel images={images} />
+          <Image
+            source={require('../../assets/images/banner.png')}
+            style={styles.banner}
+          />
           <ScrollView>
-            <Text style={styles.dashboardTitle}>DASHBOARD MENTOR</Text>
             <View style={styles.iconTemplates}>
-              {boxIcon.map ((value, key) => {
+              <View style={styles.dashboardTitleBox}>
+                <Text style={styles.dashboardTitle}>DASHBOARD SANTRI</Text>
+              </View>
+              {boxIcon.map((value, key) => {
                 return (
                   <View key={key} style={styles.iconField}>
                     <TouchableOpacity
-                      onPress={() => this.changeScreen (key)}
+                      onPress={() => this.changeScreen(key)}
                       delayPressIn={10}
-                      activeOpacity={0.5}
-                    >
-                      <View style={styles.boxIcon}>
+                      activeOpacity={0.5}>
+                      <View
+                        style={{
+                          ...styles.boxIcon,
+                          borderColor: `${value.color}`,
+                        }}>
                         <Icon
                           name={value.iconName}
                           size={value.size}
